@@ -27,9 +27,11 @@ class PostForm
                     ->schema([
                         Group::make([
                             TextInput::make('title')
-                            ->required()
-                            ->minLength(5)
-                            ->label('Judul Post'),
+                            // ->required()
+                            // ->rules('required | min:3 | max:10')
+                            ->rules('required','min:3','max:10')
+                            ->maxLength(255)
+                            ->label('Post Title'),
                             TextInput::make('slug')
                             ->required()
                             ->unique(ignoreRecord: true)
