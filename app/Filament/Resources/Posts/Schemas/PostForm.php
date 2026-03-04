@@ -11,6 +11,7 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
@@ -32,19 +33,21 @@ class PostForm
                         ->searchable(),
                     ColorPicker::make('color'),
                     MarkdownEditor::make('content'),
-                ])->columnSpanFull(),
-                Section::make('Image Upload')->schema([
-                    FileUpload::make('image')
-                        ->disk('public')
-                        ->directory('posts'),
-                ]),
-                Section::make('Meta Information')->schema([
-                    // RichEditor::make('content'),
-                        TagsInput::make('tags'),
-                        Checkbox::make('published'),
-                        DateTimePicker::make('published_at'),
-                ]),
+                ])->columnSpan(2),
+                Group::make([
+                    Section::make('Image Upload')->schema([
+                        FileUpload::make('image')
+                            ->disk('public')
+                            ->directory('posts'),
+                    ]),
+                    Section::make('Meta Information')->schema([
+                        // RichEditor::make('content'),
+                            TagsInput::make('tags'),
+                            Checkbox::make('published'),
+                            DateTimePicker::make('published_at'),
+                    ]),
+                ])->columnSpan(1),
             // ])->columns(3);
-            ])->columns(2);
+            ])->columns(3);
     }
 }
