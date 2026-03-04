@@ -32,14 +32,18 @@ class PostForm
                         ->searchable(),
                     ColorPicker::make('color'),
                     MarkdownEditor::make('content'),
+                ])->columnSpanFull(),
+                Section::make('Image Upload')->schema([
+                    FileUpload::make('image')
+                        ->disk('public')
+                        ->directory('posts'),
                 ]),
-            // RichEditor::make('content'),
-                FileUpload::make('image')
-                    ->disk('public')
-                    ->directory('posts'),
-                TagsInput::make('tags'),
-                Checkbox::make('published'),
-                DateTimePicker::make('published_at'),
+                Section::make('Meta Information')->schema([
+                    // RichEditor::make('content'),
+                        TagsInput::make('tags'),
+                        Checkbox::make('published'),
+                        DateTimePicker::make('published_at'),
+                ]),
             // ])->columns(3);
             ])->columns(2);
     }
