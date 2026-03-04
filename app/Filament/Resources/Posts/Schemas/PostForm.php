@@ -35,6 +35,9 @@ class PostForm
                             TextInput::make('slug')
                             ->rules('required')
                             ->unique()
+                            ->validationMessages([
+                                'unique' => 'Slug harus unik dan tidak boleh sama.',
+                            ])
                             ->label('Slug / URL'),
                             Select::make('category_id')
                                 ->relationship('category', 'name')
