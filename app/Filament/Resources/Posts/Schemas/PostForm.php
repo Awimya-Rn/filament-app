@@ -33,8 +33,8 @@ class PostForm
                             ->maxLength(255)
                             ->label('Post Title'),
                             TextInput::make('slug')
-                            ->required()
-                            ->unique(ignoreRecord: true)
+                            ->rules('required')
+                            ->unique()
                             ->label('Slug / URL'),
                             Select::make('category_id')
                                 ->relationship('category', 'name')
