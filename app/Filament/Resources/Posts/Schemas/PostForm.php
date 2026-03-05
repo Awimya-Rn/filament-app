@@ -22,29 +22,37 @@ class PostForm
         return $schema
             ->components([
                 Section::make('Post Details')
-                    ->description('Fiil in the details of the post.')
+                    ->description('Fill in the details of the post.')
                     ->icon('heroicon-o-document-text')
                     ->schema([
                         Group::make([
                             TextInput::make('title')
-                            ->required()
-                            ->rules('min:3|max:100')
-                            // ->rules('required','min:3','max:10')
-                            ->maxLength(255)
-                            ->label('Post Title'),
+                                ->rules('required | min:3')
+                                ->maxLength(255)
+                                ->validationMessages([
+                                    'required' => 'Judul postingan tidak boleh kosong.',
+                                    'min' => 'Judul terlalu pendek, minimal harus 5 karakter ya.',
+                                ])
+                                ->label('Post Title'),
+
                             TextInput::make('slug')
-                            ->rules('required')
-                            ->unique()
-                            ->validationMessages([
-                                'unique' => 'Slug harus unik.',
-                            ])
-                            ->label('Slug / URL'),
+                                ->rules('required')
+                                ->minLength(3)
+                                ->unique(ignoreRecord: true)
+                                ->validationMessages([
+                                    'unique' => 'Slug ini sudah dipakai, coba kombinasi kata yang lain.',
+                                    'min' => 'Slug minimal 3 karakter biar lebih oke.',
+                                    'required' => 'Slug/URL wajib diisi.'
+                                ])
+                                ->label('Slug / URL'),
+
                             Select::make('category_id')
                                 ->relationship('category', 'name')
                                 ->required()
                                 ->preload()
                                 ->searchable()
-                                ->label('Categori'),
+                                ->label('Category'),
+
                             ColorPicker::make('color')
                                 ->label('Theme Color'),
                         ])->columns(2),
