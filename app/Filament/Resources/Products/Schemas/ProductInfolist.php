@@ -25,8 +25,8 @@ class ProductInfolist
                             ->label('Product ID'),
                         TextEntry::make('sku')
                             ->label('Product SKU')
-                            ->badge()
-                            ->color('success'),
+                            ->badge() 
+                            ->color('warning'),
                         TextEntry::make('description')
                             ->label('Product Description'),
                         TextEntry::make('created_at')
@@ -40,9 +40,11 @@ class ProductInfolist
                     ->schema([
                         TextEntry::make('price')
                             ->label('Product Price')
-                            ->icon('heroicon-o-currency-dollar'),
+                            ->icon('heroicon-o-currency-dollar')
+                            ->formatStateUsing(fn(string $state): string => 'Rp ' . number_format($state, 0, ',', '.')),
                         TextEntry::make('stock')
-                            ->label('Product Stock'),
+                            ->label('Product Stock')
+                            ->icon('heroicon-o-cube'),
                     ])
                     ->columnSpanFull(),
                 Section::make('Image & Status')
@@ -53,11 +55,13 @@ class ProductInfolist
                             ->disk('public'),
                         TextEntry::make('price')
                             ->label('Product Price')
-                            ->icon('heroicon-o-currency-dollar'),
+                            ->icon('heroicon-o-currency-dollar')
+                            ->formatStateUsing(fn(string $state): string => 'Rp ' . number_format($state, 0, ',', '.')),
                         TextEntry::make('stock')
                             ->label('Product Stock')
                             ->weight('bold')
-                            ->color('primary'),
+                            ->color('primary')
+                            ->icon('heroicon-o-cube'),
                         IconEntry::make('is_active')
                             ->label('Is Active')
                             ->boolean(),
