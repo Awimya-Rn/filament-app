@@ -17,7 +17,7 @@ class PostsTable
     {
         return $table
             ->columns([
-                TextColumn::make('title'),
+                TextColumn::make('title')->sortable(),
                 TextColumn::make('slug'),
                 TextColumn::make('category.name'),
                 ColorColumn::make('color'),
