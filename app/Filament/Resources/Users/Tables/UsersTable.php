@@ -16,8 +16,8 @@ class UsersTable
             ->columns([
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('email')->searchable()->sortable(),
-                TextColumn::make('created_at')->dateTime()->sortable(),
-            ])
+                TextColumn::make('created_at')->dateTime(),
+            ])->defaultSort('created_at', 'asc')
             ->filters([
                 //
             ])
