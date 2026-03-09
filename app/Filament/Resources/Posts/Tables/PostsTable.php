@@ -23,6 +23,10 @@ class PostsTable
                 ColorColumn::make('color'),
                 ImageColumn::make('image')->disk('public'),
                 IconColumn::make('published')->boolean(),
+                TextColumn::make('created_at')
+                    ->label('Created At')
+                    ->dateTime()
+                    ->sortable(),
         ])
             ->filters([
                 //
