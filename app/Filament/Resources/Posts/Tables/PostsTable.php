@@ -19,7 +19,7 @@ class PostsTable
             ->columns([
                 TextColumn::make('title')->sortable(),
                 TextColumn::make('slug')->sortable(),
-                TextColumn::make('category.name'),
+                TextColumn::make('category.name')->sortable(),
                 ColorColumn::make('color'),
                 ImageColumn::make('image')->disk('public'),
                 IconColumn::make('published')->boolean(),
