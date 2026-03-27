@@ -20,10 +20,10 @@ class PostsTable
     {
         return $table
             ->columns([
-                TextColumn::make('id')->label('ID')->toggleable(),
-                TextColumn::make('title')->sortable()->searchable(),
-                TextColumn::make('slug')->sortable()->searchable(),
-                TextColumn::make('category.name')->sortable()->searchable(),
+                TextColumn::make('id')->label('ID')->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('title')->sortable()->toggleable()->searchable(),
+                TextColumn::make('slug')->sortable()->toggleable()->searchable(),
+                TextColumn::make('category.name')->sortable()->toggleable()->searchable(),
                 ColorColumn::make('color'),
                 ImageColumn::make('image')->disk('public'),
                 TextColumn::make('created_at')
