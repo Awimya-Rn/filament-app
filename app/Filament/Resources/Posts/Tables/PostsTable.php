@@ -30,7 +30,9 @@ class PostsTable
                     ->label('Created At')
                     ->dateTime()
                     ->sortable(),
-                TextColumn::make('tags')->label('Tags'),
+                TextColumn::make('tags')
+                    ->label('Tags')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 IconColumn::make('published')->boolean()->label('Published'),
         ])->defaultSort('created_at', 'asc')
             ->filters([
