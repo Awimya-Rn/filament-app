@@ -20,17 +20,19 @@ class PostsTable
     {
         return $table
             ->columns([
+                TextColumn::make('id')->label('ID')->sortable(),
                 TextColumn::make('title')->sortable()->searchable(),
                 TextColumn::make('slug')->sortable()->searchable(),
                 TextColumn::make('category.name')->sortable()->searchable(),
                 ColorColumn::make('color'),
                 ImageColumn::make('image')->disk('public'),
-                IconColumn::make('published')->boolean(),
                 TextColumn::make('created_at')
                     ->label('Created At')
                     ->dateTime()
                     ->sortable(),
-            ])->defaultSort('created_at', 'asc')
+                TextColumn::make('tags')->label('Tags'),
+                IconColumn::make('published')->boolean()->label('Published'),
+        ])->defaultSort('created_at', 'asc')
             ->filters([
                 Filter::make('created_at')
                     ->label('Creation Date')
