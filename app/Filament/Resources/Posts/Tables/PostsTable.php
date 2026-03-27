@@ -17,9 +17,9 @@ class PostsTable
     {
         return $table
             ->columns([
-                TextColumn::make('title')->sortable(),
-                TextColumn::make('slug')->sortable(),
-                TextColumn::make('category.name')->sortable(),
+                TextColumn::make('title')->sortable()->searchable(),
+                TextColumn::make('slug')->sortable()->searchable(),
+                TextColumn::make('category.name')->sortable()->searchable(),
                 ColorColumn::make('color'),
                 ImageColumn::make('image')->disk('public'),
                 IconColumn::make('published')->boolean(),
