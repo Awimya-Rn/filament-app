@@ -20,7 +20,7 @@ class PostsTable
     {
         return $table
             ->columns([
-                TextColumn::make('id')->label('ID')->sortable(),
+                TextColumn::make('id')->label('ID')->toggleable(),
                 TextColumn::make('title')->sortable()->searchable(),
                 TextColumn::make('slug')->sortable()->searchable(),
                 TextColumn::make('category.name')->sortable()->searchable(),
