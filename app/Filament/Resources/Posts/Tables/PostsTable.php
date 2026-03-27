@@ -11,6 +11,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Forms\Components\DatePicker;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class PostsTable
@@ -43,6 +44,10 @@ class PostsTable
                                 fn ($query,$date)=>$query->whereDate('created_at', $date),
                             );
                         }),
+                SelectFilter::make('category_id')
+                    ->relationship('category','name')
+                    ->label('Category')
+                    ->preload(),
             ])
             ->recordActions([
                 EditAction::make(),
